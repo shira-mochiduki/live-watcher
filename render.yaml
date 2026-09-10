@@ -1,0 +1,45 @@
+services:
+  - type: web
+    name: live-watcher
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: YOUTUBE_API_KEY
+        sync: false
+      - key: PUBLIC_BASE_URL
+        sync: false
+      - key: CHANNELS_JSON
+        sync: false
+      - key: CENTRAL_NODE_URL
+        sync: false
+      - key: CENTRAL_NODE_TOKEN
+        sync: false
+      - key: CENTRAL_NODE_TIMEOUT_SECONDS
+        value: "5"
+      - key: LIVE_WATCHER_INSTANCE
+        value: default
+      - key: UPCOMING_POLL_SECONDS
+        value: "60"
+      - key: UPCOMING_PRESTART_MINUTES
+        value: "10"
+      - key: UPCOMING_AFTER_15M_SECONDS
+        value: "300"
+      - key: UPCOMING_AFTER_1H_SECONDS
+        value: "900"
+      - key: UPCOMING_AFTER_6H_SECONDS
+        value: "3600"
+      - key: RESUBSCRIBE_SECONDS
+        value: "43200"
+      - key: WEBSUB_RENEW_RATIO
+        value: "0.80"
+      - key: WEBSUB_VERIFY_WAIT_SECONDS
+        value: "120"
+      - key: WEBSUB_LOOP_SECONDS
+        value: "30"
+      - key: WEBSUB_RECOVERY_SECONDS
+        value: "300"
+      - key: RSS_FALLBACK_SECONDS
+        value: "60"
+      - key: LIVE_PROBE_SECONDS
+        value: "60"
